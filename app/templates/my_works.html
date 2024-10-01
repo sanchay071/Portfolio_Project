@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>My Works</h1>
+<ul>
+    {% for project in projects.itertuples() %}
+    <li>
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <a href="{{ url_for('project_detail', project_id=project.Index) }}">View Project</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
