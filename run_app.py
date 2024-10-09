@@ -1,8 +1,9 @@
 import os
 from flask import Flask
 from app.data_handler import DataHandler  # Adjust this import based on your folder structure
+from app import app  # Import the app instance from your __init__.py
 
-app = Flask(__name__)
+# app = Flask(__name__) 
 
 # Create an instance of DataHandler and initialize the CSV file
 data_handler = DataHandler()

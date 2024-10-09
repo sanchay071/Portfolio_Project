@@ -4,6 +4,7 @@ import os
 class DataHandler:
     def __init__(self, data_file='data/projects.csv'):
         self.data_file = data_file
+        self.create_initial_data()
         self.data = self.load_data()
 
     def load_data(self):
@@ -41,10 +42,10 @@ class DataHandler:
                         'Description of Project 4'
                     ],
                     'image_path': [
-                        'imgs/image1.jpg',
-                        'imgs/image2.jpg',
-                        'imgs/image3.jpg',
-                        'imgs/image4.jpg'
+                        '/static/imgs/image1.jpg',
+                        '/static/imgs/image2.jpg',
+                        '/static/imgs/image3.jpg',
+                        '/static/imgs/image4.jpg'
                     ],
                     'details': [
                         'Detailed info about Project 1',
