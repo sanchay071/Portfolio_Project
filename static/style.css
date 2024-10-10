@@ -1,0 +1,57 @@
+/* Base styles for the navigation container */
+body{
+	padding: 0;
+	margin: 0;
+	font-family: 'Lora', serif;
+/*	background: floralwhite;*/
+}
+.nav-bar {
+    text-align: center;
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+/*    border-bottom: 1px solid lightgrey;*/
+    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+.nav-bar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Removes bullets from list items */
+  
+  }
+  
+  /* Styles for <li> elements within the navigation */
+  
+  .nav-bar li {
+    display: inline-block; /* Aligns list items horizontally */
+    padding: 24px 24px;
+  }
+  
+  .nav-bar a {
+    color: rgba(33.3, 16.5, 0);
+    text-decoration: none; /* Removes underline from links */
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    padding:	12px 12px;
+    
+  }
+  
+  .nav-bar a:hover{
+      background: rgba(228, 224, 216, .09);
+      border-radius: 6px;
+  /*	border: 1px solid rgba(228,224, 216, 1.0);*/
+      box-shadow: 8px 8px 8px rgba(228, 224, 216, 1)
+  
+  }
+  
+  .nav-bar a.active {
+      background: navajowhite;
+      border: 1px solid rgba(228,224, 216, 1.0);
+      border-radius: 6px;
+      box-shadow: 8px 8px 8px rgba(228, 224, 216, 1);
+      transition: 2s;
+  }
