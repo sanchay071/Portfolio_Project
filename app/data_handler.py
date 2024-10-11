@@ -42,10 +42,10 @@ class DataHandler:
                         'Description of Project 4'
                     ],
                     'image_path': [
-                        '/static/imgs/image1.jpg',
-                        '/static/imgs/image2.jpg',
-                        '/static/imgs/image3.jpg',
-                        '/static/imgs/image4.jpg'
+                        '/imgs/image1.jpg',
+                        '/imgs/image2.jpg',
+                        '/imgs/image3.jpg',
+                        '/imgs/image4.jpg'
                     ],
                     'details': [
                         'Detailed info about Project 1',

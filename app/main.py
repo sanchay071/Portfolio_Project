@@ -15,7 +15,7 @@ def about():
 @app.route('/my_works')
 def my_works():
     projects = data_handler.get_projects()
-    print(projects)  # Check what projects are loaded
+    print(projects)  # Check what projects are being loaded
     return render_template('my_works.html', projects=projects)
 
 @app.route('/project/<int:project_id>')
