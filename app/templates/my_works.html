@@ -2,13 +2,13 @@
 {% block content %}
 <h1 class="header">my works</h1>
 <div class="card-container">
-    {% for project in projects.itertuples() %}
-    <a href="{{ url_for('project_detail', project_id=project.Index) }}" class="card-link">
+    {% for project in projects %}
+    <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
         <div class="card">
-            <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}">
+            <img src="{{ url_for('static', filename=project['image_path']) }}" alt="{{ project['title'] }}">
             <div class="container">
-                <h4>{{ project.title }}</h4>
-                <p>{{ project.subtitle }}</p>
+                <h4>{{ project['title'] }}</h4>
+                <p>{{ project['subtitle'] }}</p>
             </div>
         </div>
     </a>
