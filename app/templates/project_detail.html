@@ -1,8 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>{{ project.title }}</h1>
-<p>{{ project.description }}</p>
-<img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}">
-<p>{{ project.details }}</p>
+<div class="project-container">
+    <section class="project-section">
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}">
+
+        {% for title in section_titles %}
+            <h3>{{ title }}</h3>
+            <p>{{ project[title] }}</p>
+            <div class="image-grid">
+                {% set images = data_handler.get_images_by_project_and_section(project.id, title) %}
+                {% for image_path in images %}
+                    <img src="{{ url_for('static', filename=image_path) }}" alt="{{ title }}">
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </section> 
+</div>
 {% endblock %}
-    
