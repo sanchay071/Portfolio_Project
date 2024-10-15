@@ -110,3 +110,51 @@ body{
 	gap: 16px;
 	padding: 24px;
 }
+
+.header{
+	color: black;
+	margin-top: 100px;
+	margin-left: 24px;
+	text-transform: capitalize
+}
+
+.project-container {
+  /*margin-top: 100px;
+  margin-left: 24px;*/
+  padding: 16px; /* Add padding if needed */
+  text-align: left; /* Center text and inline elements */
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.project-container img {
+  width: 100%; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Prevent inline spacing issues */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.project-container h2, .project-container h3{
+	text-transform: capitalize;
+}
+
+.image-grid {
+    display: grid;                 /* Use CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Create two equal columns */
+    gap: 16px;                     /* Space between images */
+}
+
+.image-grid.single-item {
+    grid-template-columns: 1fr;
+}
+
+.image-grid img {
+    width: 100%;                  /* Make images take full width of their container */
+    height: auto;                 /* Maintain aspect ratio */
+    display: block;               /* Prevent inline spacing issues */
+}
+
+.project-container iframe{
+	width: 100%;
+}
