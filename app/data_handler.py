@@ -63,6 +63,7 @@ class DataHandler:
         images = self.images_data[(self.images_data['project_id'] == project_id) & (self.images_data['section'] == section)]
         return images['image_path'].tolist() if not images.empty else []
     
+    
     def get_section_titles(self):
         return self.projects_data.columns[4:].tolist()  # Assuming the first four columns are not section titles
 
@@ -165,7 +166,7 @@ class DataHandler:
             images_data = {
                 'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                 'section': ['background', 'artifacts', 'data_glossary', 'research', 'elicitation',
-                            'interpretation', 'user_story', 'workflow', 'workflow', 'prototyping'],
+                            'interpretation', 'user_story', 'workflow', 'workflow', 'prototype'],
                 'image_path': ['imgs/bg.jpg', 'imgs/artifact.jpg', 'imgs/data.jpg', 'imgs/research.jpg', 
                                 'imgs/elicitation.jpg', 'imgs/interpretation.jpg', 'imgs/user_story.jpg', 'imgs/workflow1.jpg', 
                                 'imgs/workflow2.jpg', 'imgs/prototyping.jpg']
