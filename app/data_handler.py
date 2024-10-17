@@ -80,10 +80,10 @@ class DataHandler:
                     'Description of Project 4'
                 ],
                 'image_path': [
-                    'imgs/image1.jpg',
-                    'imgs/image2.jpg',
-                    'imgs/image3.jpg',
-                    'imgs/image4.jpg'
+                    'imgs/1_cover.jpg',
+                    'imgs/2_cover.jpg',
+                    'imgs/3_cover.jpg',
+                    'imgs/4_cover.jpg'
                 ],
                 'background': [
                     'Background text 1',
@@ -164,12 +164,18 @@ class DataHandler:
 
         if not os.path.exists(self.images_file):
             images_data = {
-                'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
                 'section': ['background', 'artifacts', 'data_glossary', 'research', 'elicitation',
-                            'interpretation', 'user_story', 'workflow', 'workflow', 'prototype'],
-                'image_path': ['imgs/bg.jpg', 'imgs/artifact.jpg', 'imgs/data.jpg', 'imgs/research.jpg', 
-                                'imgs/elicitation.jpg', 'imgs/interpretation.jpg', 'imgs/user_story.jpg', 'imgs/workflow1.jpg', 
-                                'imgs/workflow2.jpg', 'imgs/prototyping.jpg']
+                            'interpretation', 'user_story', 'workflow', 'workflow', 'background', 'artifacts', 'data_glossary', 
+                            'research', 'elicitation', 'elicitation','interpretation', 'user_story', 'workflow', 'workflow', 'workflow', 'workflow',
+                            'background', 'artifacts', 'artifacts', 'problem_statement' 'data_glossary', 'research', 'research', 'elicitation', 'elicitation',
+                            'interpretation', 'interpretation', 'interpretation', 'interpretation', 'interpretation','interpretation', 'user-story',
+                            'workflow'],
+                'image_path': ['imgs/1_bg.jpg', 'imgs/1_artifact.jpg', 'imgs/1_data.jpg', 'imgs/1_research.jpg', 
+                                'imgs/1_elicitation.jpg', 'imgs/1_interpretation.jpg', 'imgs/1_user_story.jpg', 'imgs/1.1_workflow.jpg', 
+                                'imgs/1.2_workflow.jpg', 'imgs/2_bg.jpg', 'imgs/2_artifact.jpg', 'imgs/2_data.jpg', 'imgs/2_research.jpg', 
+                                'imgs/2.1_elicitation.jpg', 'imgs/2.2_elicitation.jpg', 'imgs/2_interpretation.jpg', 'imgs/2_user_story.jpg', 'imgs/2.1_workflow.jpg', 
+                                'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg']
             }
             df_images = pd.DataFrame(images_data)
             df_images.to_csv(self.images_file, index=False)
