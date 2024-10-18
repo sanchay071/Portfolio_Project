@@ -6,7 +6,7 @@
     <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
         <div class="card">
             <img src="{{ url_for('static', filename=project['image_path']) }}" alt="{{ project['title'] }}">
-            <div class="container">
+            <div class="title-container">
                 <h4>{{ project['title'] }}</h4>
                 <p>{{ project['subtitle'] }}</p>
             </div>
