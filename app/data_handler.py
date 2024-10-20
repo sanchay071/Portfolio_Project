@@ -50,6 +50,7 @@ class DataHandler:
         self.save_images_data()
 
     def get_projects(self):
+        self.projects_data = self.projects_data.fillna('')
         return self.projects_data.to_dict(orient='records')
 
     def get_project(self, project_id):
@@ -164,18 +165,21 @@ class DataHandler:
 
         if not os.path.exists(self.images_file):
             images_data = {
-                'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
                 'section': ['background', 'artifacts', 'data_glossary', 'research', 'elicitation',
                             'interpretation', 'user_story', 'workflow', 'workflow', 'background', 'artifacts', 'data_glossary', 
                             'research', 'elicitation', 'elicitation','interpretation', 'user_story', 'workflow', 'workflow', 'workflow', 'workflow',
-                            'background', 'artifacts', 'artifacts', 'problem_statement' 'data_glossary', 'research', 'research', 'elicitation', 'elicitation',
+                            'background', 'artifacts', 'artifacts', 'problem_statement', 'data_glossary', 'research', 'research', 'elicitation', 'elicitation',
                             'interpretation', 'interpretation', 'interpretation', 'interpretation', 'interpretation','interpretation', 'user-story',
                             'workflow'],
                 'image_path': ['imgs/1_bg.jpg', 'imgs/1_artifact.jpg', 'imgs/1_data.jpg', 'imgs/1_research.jpg', 
                                 'imgs/1_elicitation.jpg', 'imgs/1_interpretation.jpg', 'imgs/1_user_story.jpg', 'imgs/1.1_workflow.jpg', 
                                 'imgs/1.2_workflow.jpg', 'imgs/2_bg.jpg', 'imgs/2_artifact.jpg', 'imgs/2_data.jpg', 'imgs/2_research.jpg', 
                                 'imgs/2.1_elicitation.jpg', 'imgs/2.2_elicitation.jpg', 'imgs/2_interpretation.jpg', 'imgs/2_user_story.jpg', 'imgs/2.1_workflow.jpg', 
-                                'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg']
+                                'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg', 'imgs/3_bg.jpg', 'imgs/3.1_artifact.jpg', 'imgs/3.2_artifact.jpg',
+                                'imgs/3_problem_statement', 'imgs/3_data.jpg', 'imgs/3.1_research.jpg', 'imgs/3.2_research.jpg', 'imgs/3.1_elicitation.jpg', 'imgs/3.2_elicitation.jpg',
+                                'imgs/3.1_interpretation.jpg', 'imgs/3.2_interpretation.jpg', 'imgs/3.3_interpretation.jpg', 'imgs/3.4_interpretation.jpg',
+                                'imgs/3.5_interpretation.jpg', 'imgs/3.6_interpretation.jpg', 'imgs/3_user_story.jpg', 'imgs/3_workflow.jpg']
             }
             df_images = pd.DataFrame(images_data)
             df_images.to_csv(self.images_file, index=False)
