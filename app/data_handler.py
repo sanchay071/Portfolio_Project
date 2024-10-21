@@ -177,7 +177,7 @@ class DataHandler:
                                 'imgs/1.2_workflow.jpg', 'imgs/2_bg.jpg', 'imgs/2_artifact.jpg', 'imgs/2_data.jpg', 'imgs/2_research.jpg', 
                                 'imgs/2.1_elicitation.jpg', 'imgs/2.2_elicitation.jpg', 'imgs/2_interpretation.jpg', 'imgs/2_user_story.jpg', 'imgs/2.1_workflow.jpg', 
                                 'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg', 'imgs/3_bg.jpg', 'imgs/3.1_artifact.jpg', 'imgs/3.2_artifact.jpg',
-                                'imgs/3_problem_statement', 'imgs/3_data.jpg', 'imgs/3.1_research.jpg', 'imgs/3.2_research.jpg', 'imgs/3.1_elicitation.jpg', 'imgs/3.2_elicitation.jpg',
+                                'imgs/3_problem_statement.jpg', 'imgs/3_data.jpg', 'imgs/3.1_research.jpg', 'imgs/3.2_research.jpg', 'imgs/3.1_elicitation.jpg', 'imgs/3.2_elicitation.jpg',
                                 'imgs/3.1_interpretation.jpg', 'imgs/3.2_interpretation.jpg', 'imgs/3.3_interpretation.jpg', 'imgs/3.4_interpretation.jpg',
                                 'imgs/3.5_interpretation.jpg', 'imgs/3.6_interpretation.jpg', 'imgs/3_user_story.jpg', 'imgs/3_workflow.jpg']
             }
