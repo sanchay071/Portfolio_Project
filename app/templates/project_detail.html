@@ -1,23 +1,50 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class = "sidebar">
+    <ul>
+        {% for title in section_titles %}
+            {% if project[title] != '' %}
+            <li><a href="#{{ title }}">{{ title.replace('_', ' ') }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
 <div class="project-container">
     <section class="project-section">
         <h2>{{ project.title }}</h2>
         <p>{{ project.description|safe }}</p>
-        <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}">
+        <img src="{{ url_for('static', filename=project.image_path) }}" alt="{{ project.title }}" loading = "lazy">
 
         {% for title in section_titles %}
             {% if project[title] != '' %}
-                <h3>{{ title.replace('_', ' ') }}</h3>
+                <h3 id="{{ title }}">{{ title.replace('_', ' ') }}</h3>
                 <p>{{ project[title]|safe }}</p>
                 <div class="image-grid">
                     {% set images = data_handler.get_images_by_project_and_section(project.id, title) %}
                     {% for image_path in images %}
-                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ title }}">
+                        <img src="{{ url_for('static', filename=image_path) }}" alt="{{ title }}" loading = "lazy">
                     {% endfor %}
                 </div>
             {% endif %}
         {% endfor %}
     </section> 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const links = document.querySelectorAll('.sidebar a');
+        links.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,  // Adjust for fixed header height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+    </script>
 {% endblock %}

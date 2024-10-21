@@ -113,7 +113,7 @@ main {
 
 .card img {
   width: 100%; /* Ensure the image takes up the full width of the card */
-  height: 10vw; /* Maintain aspect ratio */
+  height: 11vw; /* Maintain aspect ratio */
   display: block; /* Prevent inline spacing issues */
   border-radius: 32px 32px 0px 0px;
   object-fit: cover;
@@ -133,14 +133,45 @@ main {
 	text-transform: capitalize
 }
 
+/* Sidebar styling */
+.sidebar {
+    position: fixed;
+    top: 100px; /* Adjust based on your header height */
+    left: 0;
+    width: 200px; /* Adjust based on your design */
+    padding: 10px;
+    background-color: transparent;
+    border-right: none;
+    text-transform: capitalize;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Adjust color based on your design */
+    display: block;
+    padding: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f0f0; /* Add a subtle background on hover */
+}
+
 .project-container {
-  /*margin-top: 100px;
-  margin-left: 24px;*/
-  padding: 16px; /* Add padding if needed */
-  text-align: left; /* Center text and inline elements */
-  width: 60%;
-  margin: 0 auto;
-  margin-top: 100px;
+    /* margin-left: 24px; */
+    padding: 16px; /* Add padding if needed */
+    text-align: left; /* Center text and inline elements */
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 100px;
 }
 
 .project-container img {
@@ -152,7 +183,18 @@ main {
 
 .project-container h2, .project-container h3{
 	text-transform: capitalize;
+    background: floralwhite;
+    
 }
+
+.project-container h3 {
+    position: sticky;
+	top: 70px;
+}
+
+p { 
+    text-indent: 30px;
+ }
 
 .image-grid {
     display: grid;                 /* Use CSS Grid */
