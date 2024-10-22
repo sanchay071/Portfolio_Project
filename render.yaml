@@ -1,0 +1,11 @@
+version: 1
+services:
+  - type: web
+    name: my-flask-portfolio
+    env: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run_app.py  # Adjust if your start command differs
+    envVars:
+      SOME_ENV_VAR: value  # Add any environment variables your app needs
