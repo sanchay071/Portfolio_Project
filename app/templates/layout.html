@@ -12,9 +12,9 @@
         <nav class="nav-bar">
             <ul>
                 <!-- <li><a href="/">Home</a></li> -->
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('my_works') }}">My Works</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
+                <li><a href="{{ url_for('my_works') }}" class="{% if request.endpoint   in ['my_works', 'project_detail'] %}active{% endif %}">My Works</a></li>
+                <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -22,10 +22,12 @@
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 My Portfolio</p>
-        <div class="socials">
-            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://www.github.com" target="_blank">GitHub</a>
+        <div class="footer-content">
+            <p>&copy; 2024 My Portfolio</p>
+            <div class="socials">
+                <a href="https://linkedin.com/in/sanchay07" target="_blank">LinkedIn</a>
+                <a href="https://github.com/sanchay071" target="_blank">GitHub</a>
+            </div>
         </div>
     </footer>
     <script>
