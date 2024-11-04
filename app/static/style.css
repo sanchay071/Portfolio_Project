@@ -8,6 +8,11 @@ body{
 /*	background: floralwhite;*/
 }
 
+header {
+    position: relative; /* or fixed */
+    z-index: 1000; /* this value shoud be higher than the cards' z-index */
+}
+
 main {
     min-height: calc(100vh - 60px); /* Adjust min-height to keep footer at bottom */
     margin-bottom: 30px;
