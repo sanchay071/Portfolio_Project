@@ -2,12 +2,14 @@ import pandas as pd
 import os
 
 class DataHandler:
-    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv'):
+    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv'):
         self.projects_file = projects_file
         self.images_file = images_file
+        self.about_file = about_file
         self.create_initial_data()
         self.projects_data = self.load_projects_data()  # Ensure this is called after create_initial_data
         self.images_data = self.load_images_data()
+        self.about_data = self.load_about_data()
 
     def load_projects_data(self):
         if os.path.exists(self.projects_file):
@@ -24,12 +26,22 @@ class DataHandler:
         else:
             # Initialize with empty DataFrame if the file doesn't exist
             return pd.DataFrame(columns=['project_id', 'section', 'image_path'])
+    
+    def load_about_data(self):
+        if os.path.exists(self.about_file):
+            return pd.read_csv(self.about_file)
+        else:
+            # Initialize with empty DataFrame if the file doesn't exist
+            return pd.DataFrame(columns=['title', 'description', 'image_path'])
 
     def save_projects_data(self):
         self.projects_data.to_csv(self.projects_file, index=False)
 
     def save_images_data(self):
         self.images_data.to_csv(self.images_file, index=False)
+        
+    def save_about_data(self):
+        self.about_data.to_csv(self.about_file, index=False)
 
     def add_project(self, id, title, description, image_path, background, artifacts, problem_statement,
                     data_glossary, research, elicitation, interpretation, user_story, workflow,
@@ -48,6 +60,11 @@ class DataHandler:
         new_image = {'project_id': project_id, 'section': section, 'image_path': image_path}
         self.images_data = self.images_data.append(new_image, ignore_index=True)
         self.save_images_data()
+        
+    def add_about(self, title, description, image_path):
+        new_section = {'title': title, 'text': description, 'image_path': image_path}
+        self.about_data = self.about_data.append(new_section, ignore_index=True)
+        self.save_about_data()
 
     def get_projects(self):
         self.projects_data = self.projects_data.fillna('')
@@ -59,6 +76,10 @@ class DataHandler:
             return project.iloc[0]
         else:
             return None
+    
+    def get_about(self):
+        self.about_data = self.about_data.fillna('')
+        return self.about_data.to_dict(orient='records')
     
     def get_images_by_project_and_section(self, project_id, section):
         images = self.images_data[(self.images_data['project_id'] == project_id) & (self.images_data['section'] == section)]
@@ -181,5 +202,16 @@ class DataHandler:
                                 'imgs/3.1_interpretation.jpg', 'imgs/3.2_interpretation.jpg', 'imgs/3.3_interpretation.jpg', 'imgs/3.4_interpretation.jpg',
                                 'imgs/3.5_interpretation.jpg', 'imgs/3.6_interpretation.jpg', 'imgs/3_user_story.jpg', 'imgs/3_workflow.jpg']
             }
+            
             df_images = pd.DataFrame(images_data)
             df_images.to_csv(self.images_file, index=False)
+            
+         # Initialize about data if not present
+        if not os.path.exists(self.about_file):
+            about_data = {
+                'title': ['About Me'],
+                'description': ['This is a description about me and my work.'],
+                'image_path': ['imgs/selfie.jpg']
+            }
+            df_about = pd.DataFrame(about_data)
+            df_about.to_csv(self.about_file, index=False)
