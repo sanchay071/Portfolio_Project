@@ -1,10 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Contact</h1>
-<p>Links to my social media and resume.</p>
-<ul>
-    <li><a href="https://github.com/sanchay-071">GitHub</a></li>
-    <li><a href="https://www.linkedin.com/in/sanchay07/">LinkedIn</a></li>
-    
-</ul>
+<div class="contact-container">
+    <h1>Contact</h1>
+    <!-- <p>Links to my social media and resume.</p> -->
+    <ul class="contact-list">
+        <li>
+            <a href="https://github.com/sanchay-071">
+                <img src="{{ url_for('static', filename='imgs/github-mark.svg') }}" alt="Git Logo" class="social-logo">
+                GitHub
+            </a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/sanchay07/">
+                <img src="{{ url_for('static', filename='imgs/linkedin.svg') }}" alt="LinkedIn Logo" class="social-logo">
+                LinkedIn
+            </a>
+        </li>
+    </ul>
+</div>
 {% endblock %}

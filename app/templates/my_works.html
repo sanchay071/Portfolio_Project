@@ -1,6 +1,6 @@
     {% extends "layout.html" %}
     {% block content %}
-    <h1 class="header">my works</h1>
+    <h3 class="header">my works</h3>
     <div class="card-container">
         {% for project in projects %}
         <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
