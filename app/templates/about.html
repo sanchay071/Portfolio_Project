@@ -3,9 +3,13 @@
 <div class="intro"> 
     <h3>Designer, Business Analyst</h3>
     {% for section in about_data %}
-        <h4>{{ section['title'] }}</h4>
-        <img src="{{ url_for('static', filename=section['image_path']) }}" alt="About Image">
-        <p>{{ section['description']|safe }}</p>
+        <div class="section">
+            <h4>{{ section['title'] }}</h4>
+            {% if section['image_path'] %}
+                <img src="{{ url_for('static', filename=section['image_path']) }}" alt="About Image" class="{{ 'left' if loop.index is odd else 'right' }}">
+            {% endif %}
+            <p>{{ section['description']|safe }}</p>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}
