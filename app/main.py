@@ -23,8 +23,16 @@ def my_works():
 def project_detail(project_id):
     project = data_handler.get_project(project_id)
     section_titles = data_handler.get_section_titles()
+    
+    # Determine the next project ID
+    next_project = data_handler.get_next_project(project_id)
+    next_project_id = next_project['id'] if next_project else None
+    
+    # Determine the previous project ID or if it's the "My Works" page
+    prev_project = data_handler.get_prev_project(project_id)
+    prev_project_id = prev_project['id'] if prev_project else 'my_works'
     if project is not None:
-        return render_template('project_detail.html', project=project, section_titles=section_titles, data_handler=data_handler)
+        return render_template('project_detail.html', project=project, section_titles=section_titles, data_handler=data_handler, next_project_id=next_project_id, prev_project_id=prev_project_id)
     else:
         print("Project not found")
         return "Project not found", 404

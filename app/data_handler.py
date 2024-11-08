@@ -88,6 +88,20 @@ class DataHandler:
     
     def get_section_titles(self):
         return self.projects_data.columns[4:].tolist()  # Assuming the first four columns are not section titles
+    
+    def get_next_project(self, current_project_id):
+        projects = self.get_projects()
+        current_index = next((index for (index, d) in enumerate(projects) if d["id"] == current_project_id), None)
+        if current_index is not None and current_index + 1 < len(projects):
+            return projects[current_index + 1]
+        return None
+
+    def get_prev_project(self, current_project_id):
+        projects = self.get_projects()
+        current_index = next((index for (index, d) in enumerate(projects) if d["id"] == current_project_id), None)
+        if current_index is not None and current_index > 0:
+            return projects[current_index - 1]
+        return None
 
     def create_initial_data(self):
         # Check if the data file exists and create it with sample data if it doesn't

@@ -29,6 +29,15 @@
         {% endfor %}
     </section> 
 </div>
+
+<!-- Add the navigation buttons -->
+<a href="{{ url_for(prev_project_id) if prev_project_id == 'my_works' else url_for('project_detail', project_id=prev_project_id) }}" id="previous-button" class="nav-button">Previous</a>
+{% if next_project_id %}
+    <a href="{{ url_for('project_detail', project_id=next_project_id) }}" id="next-button" class="nav-button">Next</a>
+{% else %}
+    <button id="next-button" class="nav-button" disabled>Next</button>
+{% endif %}
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const links = document.querySelectorAll('.sidebar a');
@@ -45,6 +54,27 @@
                 }
             });
         });
+
+        const footer = document.querySelector('footer');
+        const prevButton = document.getElementById('previous-button');
+        const nextButton = document.getElementById('next-button');
+        const gap = 20;
+
+        function adjustButtonPosition() {
+            const footerRect = footer.getBoundingClientRect();
+            const buttonHeight = prevButton.offsetHeight;
+            if (footerRect.top < window.innerHeight - buttonHeight) {
+                prevButton.style.bottom = (window.innerHeight - footerRect.top) + 'px';
+                nextButton.style.bottom = (window.innerHeight - footerRect.top) + 'px';
+            } else {
+                prevButton.style.bottom = '20px';
+                nextButton.style.bottom = '20px';
+            }
+        }
+
+        window.addEventListener('scroll', adjustButtonPosition);
+        window.addEventListener('resize', adjustButtonPosition);
+        adjustButtonPosition();
     });
-    </script>
+</script>
 {% endblock %}
