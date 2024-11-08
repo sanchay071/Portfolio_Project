@@ -6,6 +6,7 @@
     <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/openseadragon.min.js"></script>
 </head>
 <body>
     <header>
@@ -38,6 +39,20 @@
             } else {
                 navBar.classList.remove('shadow');
             }
+        });
+
+        // OpenSeadragon initialization script
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.openseadragon-viewer').forEach(function(viewerElement) {
+                OpenSeadragon({
+                    element: viewerElement,
+                    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
+                    tileSources: {
+                        type: 'image',
+                        url: viewerElement.getAttribute('data-image')
+                    }
+                });
+            });
         });
     </script>
 </body>
