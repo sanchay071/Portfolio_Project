@@ -28,7 +28,7 @@ project_id,section,image_path
 3,background,imgs/3_bg.jpg
 3,artifacts,imgs/3.1_artifact.jpg
 3,artifacts,imgs/3.2_artifact.jpg
-3,problem_statement,imgs/3_problem_statement
+3,problem_statement,imgs/3_problem_statement.jpg
 3,data_glossary,imgs/3_data.jpg
 3,research,imgs/3.1_research.jpg
 3,research,imgs/3.2_research.jpg

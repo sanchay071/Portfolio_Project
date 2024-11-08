@@ -160,9 +160,15 @@ main {
 	padding: 24px;
 }
 
-.header{
+.header-text{
 	color: black;
 	margin-top: 100px;
+	margin-left: 24px;
+	/* text-transform: capitalize */
+}
+.header{
+	color: black;
+	/* margin-top: 100px; */
 	margin-left: 24px;
 	text-transform: capitalize
 }
