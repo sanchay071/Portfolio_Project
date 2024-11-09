@@ -6,7 +6,8 @@ data_handler = DataHandler()
 
 @app.route('/')
 def home():
-    return render_template('about.html')
+    about_data = data_handler.get_about()
+    return render_template('about.html', about_data=about_data)
 
 @app.route('/about')
 def about():
