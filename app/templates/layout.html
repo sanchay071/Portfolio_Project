@@ -43,25 +43,35 @@
 
         // OpenSeadragon initialization script
         document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll('.openseadragon-viewer').forEach(function(viewerElement) {
-                OpenSeadragon({
-                    element: viewerElement,
-                    prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
-                    tileSources: {
-                        type: 'image',
-                        url: viewerElement.getAttribute('data-image')
-                    },
-                    gestureSettingsMouse: {
-                    scrollToZoom: false,   // Disable zoom on mouse scroll
-                    clickToZoom: true,     // Enable click to zoom
-                    dblClickToZoom: true,  // Enable double-click to zoom
-                    pinchToZoom: true,     // Enable pinch to zoom
-                    flickEnabled: true,    // Enable flick gestures
-                    singleClickToZoom: false, // Disable single click to zoom
-                    }
-                });
+        document.querySelectorAll('.openseadragon-viewer').forEach(function(viewerElement) {
+            OpenSeadragon({
+                element: viewerElement,
+                prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/images/",
+                tileSources: {
+                    type: 'image',
+                    url: viewerElement.getAttribute('data-image')
+                },
+                gestureSettingsMouse: {
+                    scrollToZoom: false,  // Disable zoom on mouse scroll
+                    clickToZoom: true,    // Enable click to zoom
+                    dblClickToZoom: true, // Enable double-click to zoom
+                    pinchToZoom: true,    // Enable pinch to zoom
+                    flickEnabled: true,   // Enable flick gestures
+                    singleClickToZoom: false, // Disable single-click to zoom
+                }
+            });
+
+            // Optional: Disable zooming but allow page scrolling when mouse wheel is over the viewer
+            viewerElement.addEventListener('wheel', function(event) {
+                // If the event is not on the viewer, allow normal page scrolling
+                if (event.deltaY !== 0) {
+                    event.preventDefault();  // Prevent zooming
+                    // Allow page scroll when the wheel is used
+                    window.scrollBy(0, event.deltaY);
+                }
             });
         });
+    });
     </script>
 </body>
 </html>

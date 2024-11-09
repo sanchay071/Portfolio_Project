@@ -13,6 +13,7 @@
     <section class="project-section">
         <h2>{{ project.title }}</h2>
         <p>{{ project.description|safe }}</p>
+        <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=project.image_path) }}" loading = "lazy"></div>
         {% for title in section_titles %}
             {% if project[title] != '' %}
                 <h3 id="{{ title }}">{{ title.replace('_', ' ') }}</h3>
@@ -21,7 +22,7 @@
                     {% set images = data_handler.get_images_by_project_and_section(project.id, title) %}
                     {% for image_path in images %}
                     <div class="image-container">
-                        <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=image_path) }}" style="width: 100%; height: 600px;" loading = "lazy"></div>
+                        <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=image_path) }}" loading = "lazy"></div>
                     </div>
                     {% endfor %}
                 </div>
@@ -29,6 +30,8 @@
         {% endfor %}
     </section> 
 </div>
+
+<div id="toaster" class="toaster">Hover on an image to zoom with buttons</div>
 
 <!-- Add the navigation buttons -->
 <a href="{{ url_for(prev_project_id) if prev_project_id == 'my_works' else url_for('project_detail', project_id=prev_project_id) }}" id="previous-button" class="nav-button">Previous</a>
@@ -75,6 +78,15 @@
         window.addEventListener('scroll', adjustButtonPosition);
         window.addEventListener('resize', adjustButtonPosition);
         adjustButtonPosition();
+
+        console.log("Page Loaded");
+        var toaster = document.getElementById('toaster');
+        toaster.classList.add('show');
+        console.log("Toaster Show Class Added");
+
+        setTimeout(function() {
+            toaster.classList.remove('show');
+        }, 3000); // 3 seconds
     });
 </script>
 {% endblock %}
