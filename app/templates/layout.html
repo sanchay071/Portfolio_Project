@@ -50,6 +50,14 @@
                     tileSources: {
                         type: 'image',
                         url: viewerElement.getAttribute('data-image')
+                    },
+                    gestureSettingsMouse: {
+                    scrollToZoom: false,   // Disable zoom on mouse scroll
+                    clickToZoom: true,     // Enable click to zoom
+                    dblClickToZoom: true,  // Enable double-click to zoom
+                    pinchToZoom: true,     // Enable pinch to zoom
+                    flickEnabled: true,    // Enable flick gestures
+                    singleClickToZoom: false, // Disable single click to zoom
                     }
                 });
             });
