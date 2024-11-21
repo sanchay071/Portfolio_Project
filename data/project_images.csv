@@ -2,7 +2,10 @@ project_id,section,image_path
 1,background,imgs/1_bg.jpg
 1,artifacts,imgs/1_artifact.jpg
 1,data_glossary,imgs/1_data.jpg
-1,research,imgs/1_research.jpg
+1,research,imgs/1.1_research.jpg
+1,research,imgs/1.2_research.jpg
+1,research,imgs/1.3_research.jpg
+1,research,imgs/1.4_research.jpg
 1,elicitation,imgs/1_elicitation.jpg
 1,interpretation,imgs/1_interpretation.jpg
 1,user_story,imgs/1_user_story.jpg
