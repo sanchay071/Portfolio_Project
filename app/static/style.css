@@ -5,7 +5,7 @@ body{
 	font-family: 'Lora', serif;
     position: relative; /* Allows for absolute positioning of footer */
     padding-bottom: 60px; 
-/*	background: floralwhite;*/
+	/* background: #f9f8f5; */
 }
 
 header {
@@ -148,6 +148,9 @@ main {
   padding: 16px;
   display: flex;
   text-align: center;
+  min-height: 60px; /* Set a minimum height for the title container */
+  align-items: center; /* Align items in the center vertically */
+  justify-content: center; /* Center the content horizontally */
 }
 
 .card img {
@@ -227,6 +230,12 @@ main {
     width: 60%;
     margin: 0 auto;
     margin-top: 100px;
+}
+
+.project-container a {
+    /* text-decoration: none; */
+    color: black;
+    font-weight: bold;
 }
 
 .project-container img {
