@@ -203,18 +203,19 @@ class DataHandler:
                 'project_id': [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
                 'section': ['background', 'artifacts', 'data_glossary', 'research', 'research', 'elicitation',
                             'interpretation', 'user_story', 'workflow', 'workflow', 'background', 'artifacts', 'data_glossary', 
-                            'research', 'elicitation', 'elicitation','interpretation', 'user_story', 'workflow', 'workflow', 'workflow', 'workflow',
-                            'background', 'artifacts', 'artifacts', 'problem_statement', 'data_glossary', 'research', 'research', 'elicitation', 'elicitation',
-                            'interpretation', 'interpretation', 'interpretation', 'interpretation', 'interpretation','interpretation', 'user-story',
-                            'workflow'],
+                            'research', 'elicitation', 'elicitation','interpretation', 'user_story', 'workflow', 'workflow', 'workflow', 'workflow', 'workflow', 'workflow',
+                            'background', 'background', 'artifacts', 'artifacts', 'problem_statement', 'data_glossary', 'research', 'research', 'elicitation', 'elicitation',
+                            'interpretation', 'interpretation', 'interpretation', 'interpretation', 'interpretation','interpretation', 'user_story',
+                            'workflow', 'prototype', 'prototype', 'background', 'artifacts', 'artifacts', 'workflow', 'workflow', 'workflow', 'workflow'],
                 'image_path': ['imgs/1_bg.jpg', 'imgs/1_artifact.jpg', 'imgs/1_data.jpg', 'imgs/1.1_research.jpg', 'imgs/1.2_research.jpg', 'imgs/1.3_research.jpg', 'imgs/1.4_research.jpg',
                                 'imgs/1_elicitation.jpg', 'imgs/1_interpretation.jpg', 'imgs/1_user_story.jpg', 'imgs/1.1_workflow.jpg', 
                                 'imgs/1.2_workflow.jpg', 'imgs/2_bg.jpg', 'imgs/2_artifact.jpg', 'imgs/2_data.jpg', 'imgs/2_research.jpg', 
                                 'imgs/2.1_elicitation.jpg', 'imgs/2.2_elicitation.jpg', 'imgs/2_interpretation.jpg', 'imgs/2_user_story.jpg', 'imgs/2.1_workflow.jpg', 
-                                'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg', 'imgs/3_bg.jpg', 'imgs/3.1_artifact.jpg', 'imgs/3.2_artifact.jpg',
+                                'imgs/2.2_workflow.jpg', 'imgs/2.3_workflow.jpg', 'imgs/2.4_workflow.jpg', 'imgs/2.5_workflow.jpg', 'imgs/2.6_workflow.jpg', 'imgs/3.1_bg.jpg', 'imgs/3.2_bg.jpg', 'imgs/3.1_artifact.jpg', 'imgs/3.2_artifact.jpg',
                                 'imgs/3_problem_statement.jpg', 'imgs/3_data.jpg', 'imgs/3.1_research.jpg', 'imgs/3.2_research.jpg', 'imgs/3.1_elicitation.jpg', 'imgs/3.2_elicitation.jpg',
                                 'imgs/3.1_interpretation.jpg', 'imgs/3.2_interpretation.jpg', 'imgs/3.3_interpretation.jpg', 'imgs/3.4_interpretation.jpg',
-                                'imgs/3.5_interpretation.jpg', 'imgs/3.6_interpretation.jpg', 'imgs/3_user_story.jpg', 'imgs/3_workflow.jpg']
+                                'imgs/3.5_interpretation.jpg', 'imgs/3.6_interpretation.jpg', 'imgs/3_user_story.jpg', 'imgs/3_workflow.jpg', 'imgs/3.1_prototype.jpg', 'imgs/3.2_prototype.jpg', 'imgs/6_bg.jpg',
+                                'imgs/6.1_artifact.jpg', 'imgs/6.2_artifact.jpg', 'imgs/6.1_workflow.jpg','imgs/6.2_workflow.jpg','imgs/6.3_workflow.jpg', 'imgs/6.4_workflow.jpg']
             }
             
             df_images = pd.DataFrame(images_data)
