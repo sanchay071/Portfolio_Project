@@ -6,6 +6,7 @@ body{
     position: relative; /* Allows for absolute positioning of footer */
     padding-bottom: 60px; 
 	/* background: #f9f8f5; */
+    font-size: 18px;
 }
 
 header {
@@ -76,15 +77,15 @@ main {
     transition: 2s; */
 }
 
-.intro{
-    margin-top: 100px;
-    margin-left: 24px;
+.intro {
+    width: 90%;
+    margin: 100px auto 0 auto;
 }
 
-.intro h4{
-    font-size: 16px;
+/* .intro h4{
+    font-size: 18px;
     font-weight: normal;
-}
+} */
 
 .intro .special-link{
     color: black;
@@ -107,17 +108,34 @@ main {
     float: right;
 }
 
-.section {
+.intro .section {
     margin-bottom: 40px; /* Add spacing between sections */
-    overflow: hidden; /* Ensure floated elements are contained */
+    overflow: hidden;
 }
 
-.section p {
-    margin: 0; /* Remove default margin */
+.intro .section p {
+    overflow: hidden; /* Ensure floated elements are contained */
 }
 
 .intro img:hover{
 	transition: scale(1.05);
+}
+
+.header-text{
+	color: black;
+    width: 60%;
+	margin: 100px auto 0 auto;
+    font-size: 18px;
+	/* text-transform: capitalize */
+}
+
+.header{
+	color: black;
+	/* margin-top: 100px; */
+    width: 60%;
+    margin: 50px auto 32px auto;
+	/* margin-left: 24px; */
+	text-transform: capitalize;
 }
 
 .card{
@@ -178,25 +196,12 @@ main {
 	padding: 24px;
 }
 
-.header-text{
-	color: black;
-	margin-top: 100px;
-	margin-left: 24px;
-	/* text-transform: capitalize */
-}
-.header{
-	color: black;
-	/* margin-top: 100px; */
-	margin-left: 24px;
-	text-transform: capitalize
-}
-
 /* Sidebar styling */
 .sidebar {
     position: fixed;
-    top: 100px; /* Adjust based on your header height */
+    top: 100px; /* Adjust based on header height */
     left: 0;
-    width: 200px; /* Adjust based on your design */
+    width: 200px; 
     padding: 10px;
     background-color: transparent;
     border-right: none;
@@ -214,7 +219,7 @@ main {
 
 .sidebar ul li a {
     text-decoration: none; /* Remove underline */
-    color: #333; /* Adjust color based on your design */
+    color: #333; 
     display: block;
     padding: 5px;
 }
