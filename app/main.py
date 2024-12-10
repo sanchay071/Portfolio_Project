@@ -7,12 +7,14 @@ data_handler = DataHandler()
 @app.route('/')
 def home():
     about_data = data_handler.get_about()
-    return render_template('about.html', about_data=about_data)
+    skills_data = data_handler.get_skills()
+    return render_template('about.html', about_data=about_data, skills_data = skills_data)
 
 @app.route('/about')
 def about():
     about_data = data_handler.get_about()
-    return render_template('about.html', about_data=about_data)
+    skills_data = data_handler.get_skills()
+    return render_template('about.html', about_data=about_data, skills_data = skills_data)
 
 @app.route('/my_works')
 def my_works():

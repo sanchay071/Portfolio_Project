@@ -2,14 +2,16 @@ import pandas as pd
 import os
 
 class DataHandler:
-    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv'):
+    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv', skills_file = 'data/skills.csv'):
         self.projects_file = projects_file
         self.images_file = images_file
         self.about_file = about_file
+        self.skills_file = skills_file
         self.create_initial_data()
         self.projects_data = self.load_projects_data()  # Ensure this is called after create_initial_data
         self.images_data = self.load_images_data()
         self.about_data = self.load_about_data()
+        self.skills_data = self.load_skills_data()
 
     def load_projects_data(self):
         if os.path.exists(self.projects_file):
@@ -33,6 +35,13 @@ class DataHandler:
         else:
             # Initialize with empty DataFrame if the file doesn't exist
             return pd.DataFrame(columns=['title', 'description', 'image_path'])
+        
+    def load_skills_data(self):
+        if os.path.exists(self.skills_file):
+            return pd.read_csv(self.skills_file)
+        else:
+            # Initialize with empty DataFrame if the file doesn't exist
+            return pd.DataFrame(columns=['skills', 'icon'])
 
     def save_projects_data(self):
         self.projects_data.to_csv(self.projects_file, index=False)
@@ -42,6 +51,9 @@ class DataHandler:
         
     def save_about_data(self):
         self.about_data.to_csv(self.about_file, index=False)
+        
+    def save_skills_data(self):
+        self.skills_data.to_csv(self.skills_file, index=False)
 
     def add_project(self, id, title, description, image_path, background, artifacts, problem_statement,
                     data_glossary, research, elicitation, interpretation, user_story, workflow,
@@ -66,6 +78,11 @@ class DataHandler:
         self.about_data = self.about_data.append(new_section, ignore_index=True)
         self.save_about_data()
 
+    def add_skills(self, skills, icon):
+        new_skill = {'skills': skills, 'icon': icon}
+        self.skills_data = self.skills_data.append(new_skill, ignore_index=True)
+        self.save_skills_data()
+        
     def get_projects(self):
         self.projects_data = self.projects_data.fillna('')
         return self.projects_data.to_dict(orient='records')
@@ -102,6 +119,10 @@ class DataHandler:
         if current_index is not None and current_index > 0:
             return projects[current_index - 1]
         return None
+    
+    def get_skills(self):
+        self.skills_data = self.skills_data.fillna('')
+        return self.skills_data.to_dict(orient='records')
 
     def create_initial_data(self):
         # Check if the data file exists and create it with sample data if it doesn't
@@ -230,3 +251,12 @@ class DataHandler:
             }
             df_about = pd.DataFrame(about_data)
             df_about.to_csv(self.about_file, index=False)
+            
+        # Initialize skills data if not present
+        if not os.path.exists(self.skills_file):
+            skills_data = {
+                'skills': ['skills'],
+                'icon': ['imgs/figma.svg']
+            }
+            df_skills = pd.DataFrame(skills_data)
+            df_skills.to_csv(self.skills_file, index=False)
