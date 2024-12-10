@@ -134,7 +134,7 @@ Each of the templates that extend `layout.html` follows a similar structure for 
    - The `adjustButtonPosition` function adjusts the position of navigation buttons based on the page scroll. Ensure that the footer element is properly sized and positioned to avoid misalignment of buttons.
    - The hover-to-zoom feature (via OpenSeadragon) relies on images being loaded properly. If there are missing images or broken links, the viewer may not initialize correctly, leading to a broken user experience.
 
-### OpenSeaDragon and Slick Carousel
+## OpenSeaDragon and Slick Carousel
 In this project, OpenSeadragon and Slick Carousel are utilized for interactive image display and smooth navigation through project visuals.
 
 #### OpenSeadragon
