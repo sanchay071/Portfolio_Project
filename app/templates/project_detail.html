@@ -1,26 +1,54 @@
 {% extends "layout.html" %}
 {% block content %}
+<!--
+    This block of content displays a sidebar with links to different sections of the project.
+    The links are dynamically generated from the project section titles.
+-->
 <div class = "sidebar">
     <ul>
         {% for title in section_titles %}
             {% if project[title] != '' %}
+            <!-- 
+                For each section title, we generate a link to that section in the project detail page.
+                The title is formatted by replacing underscores with spaces for better readability.
+            -->
             <li><a href="#{{ title }}">{{ title.replace('_', ' ') }}</a></li>
             {% endif %}
         {% endfor %}
     </ul>
 </div>
+<!--
+    This section displays the project content, including the project title, description, 
+    and images related to different sections of the project.
+-->
 <div class="project-container">
     <section class="project-section">
         <h2>{{ project.title }}</h2>
         <p>{{ project.description|safe }}</p>
+        <!-- 
+            Display the project image using OpenSeadragon viewer, enabling zoom functionality.
+            This is helpful for large or detailed images.
+        -->
+
         <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=project.image_path) }}" loading = "lazy"></div>
+        <!-- Loop through all section titles, checking if there is content for each section -->
+
         {% for title in section_titles %}
             {% if project[title] != '' %}
+                <!-- Display section content if available -->
                 <h3 id="{{ title }}">{{ title.replace('_', ' ') }}</h3>
                 <p>{{ project[title]|safe }}</p>
+
+                <!-- 
+                    Display images associated with this section. Each image is loaded from the 
+                    project’s associated image paths and displayed in a grid layout.
+                -->
+
                 <div class="image-grid">
                     {% set images = data_handler.get_images_by_project_and_section(project.id, title) %}
                     {% for image_path in images %}
+
+                    <!-- Display each image inside a container, with zoom functionality -->
                     <div class="image-container">
                         <div class="openseadragon-viewer" data-image="{{ url_for('static', filename=image_path) }}" loading = "lazy"></div>
                     </div>
@@ -31,6 +59,11 @@
     </section> 
 </div>
 
+<!-- 
+    Toaster message: A brief message that shows up when the page is loaded, instructing the user
+    to hover over an image for zoom functionality.
+-->
+
 <div id="toaster" class="toaster">Hover on an image to zoom with buttons</div>
 
 <!-- Add the navigation buttons -->
@@ -40,6 +73,13 @@
 {% else %}
     <button id="next-button" class="nav-button" disabled>Next</button>
 {% endif %}
+
+<!--
+    JavaScript to enhance interactivity:
+    - Smooth scrolling to section anchors when clicked in the sidebar.
+    - Dynamic positioning of navigation buttons relative to the footer, ensuring they are always visible.
+    - Display of the "toaster" message for 3 seconds upon page load.
+-->
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

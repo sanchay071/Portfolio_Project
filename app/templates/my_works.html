@@ -1,5 +1,7 @@
     {% extends "layout.html" %}
     {% block content %}
+
+    {# Wrapper for the main content of the page #}
     <div class = "content-wrapper">
         <div class = "header-text">
             <h3>About My Projects</h3>
@@ -9,11 +11,15 @@
         </div>
         <h3 class="header">my works</h3>
         <div class="card-container">
+
+            {# Loop through the projects and display each project in a card #}
             {% for project in projects %}
             <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
                 <div class="card">
                     <img src="{{ url_for('static', filename=project['image_path']) }}" alt="{{ project['title'] }}">
                     <div class="title-container">
+
+                        {# Container for project title and subtitle #}
                         <h4>{{ project['title'] }}</h4>
                         <p>{{ project['subtitle'] }}</p>
                     </div>

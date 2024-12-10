@@ -1,13 +1,23 @@
+{# This template extends the base layout.html #}
 {% extends "layout.html" %}
+
+{# Block to replace content in the layout.html #}
 {% block content %}
 <div class="intro"> 
     <h3>Designer, Business Analyst</h3>
+
+    {# Loop through the about_data and display each section's content #}
     {% for section in about_data %}
         <div class="section">
             <h4>{{ section['title'] }}</h4>
+
+            {# Check if the section has an image and display it with alternating float classes #}
+            {% if section['image_path'] %}
             {% if section['image_path'] %}
                 <img src="{{ url_for('static', filename=section['image_path']) }}" alt="About Image" class="{{ 'left' if loop.index is odd else 'right' }}">
             {% endif %}
+
+            {# Display the section description allowing for HTML content #}
             <p>{{ section['description']|safe }}</p>
         </div>
     {% endfor %}
@@ -17,6 +27,8 @@
 <div class="skills-section">
     <!-- <h2>Skills</h2> -->
     <div class="skills-container carousel">
+
+        {# Loop through the skills_data and display each skill's icon #}
         {% for skill in skills_data %}
             <div class="skill">
                 <img src="{{ url_for('static', filename=skill.icon) }}" alt="{{ skill.skills }} Icon">
