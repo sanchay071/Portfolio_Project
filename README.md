@@ -7,6 +7,7 @@ Welcome! This guide details the steps to create a portfolio website and the proc
 - [Prerequisites](#prerequisites)
 - [Database](#database)
 - [Deployment](#deployment)
+- [Website Snapshots](#website-snapshots)
 ## Overview
 The end-user of the website can be hiring managers, managers, experts in any field. The portfolio showcases your skills, projects, your personal journey. The navigation is divided into following:
 
@@ -73,6 +74,10 @@ Run the `run_app.py` script once all the prerequisites are satisfied.
 7. To pull the latest code from GitHub, use `git pull origin main`
 8. Save the code changes, and click reload to launch your website ![image](https://github.com/user-attachments/assets/43be26cd-6628-4285-82a1-df1c666741d6)
 
+## Website Snapshots
+![image](https://github.com/user-attachments/assets/65d9491c-7a71-4691-a855-b15990a2c3e9)
+
+![image](https://github.com/user-attachments/assets/39f62088-660f-4392-a95a-fdce4bafc982)
 
 
 
