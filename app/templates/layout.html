@@ -6,7 +6,11 @@
     <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/3.0.0/openseadragon.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
     <header>
@@ -39,6 +43,51 @@
             } else {
                 navBar.classList.remove('shadow');
             }
+        });
+
+        $(document).ready(function(){
+            // Initialize slick carousel
+            function initializeCarousel() {
+                $('.carousel').slick({
+                    slidesToShow: 3,  // Number of visible slides
+                    slidesToScroll: 1,  // Number of slides to scroll
+                    autoplay: true,  // Enable autoplay
+                    autoplaySpeed: 0,  // Set to 0 to continuously scroll
+                    speed: 7000,  // The speed of the transition (3000ms = 3 seconds per slide transition)
+                    arrows: false,  // Disable arrows
+                    dots: false,  // Disable dots
+                    infinite: true,  // Make the carousel loop infinitely
+                    cssEase: 'linear',  // Smooth linear transition for continuous movement
+                    centerMode: false,  // No need to center items in this case
+                    pauseOnHover: false,  // Disable pausing when hovering
+                    draggable: false,  // Disable dragging for a seamless loop
+                    responsive: [
+                        {
+                            breakpoint: 768,  // Adjust settings for small screens
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1
+                            }
+                        },
+                        {
+                            breakpoint: 480,  // Adjust for very small screens
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
+                });
+            }
+
+            // Initialize the carousel on page load
+            initializeCarousel();
+
+            // Prevent the carousel from having a "jump" when resizing
+            $(window).resize(function() {
+                // Trigger re-calculation of the slick carousel layout
+                $('.carousel').slick('setPosition');
+            });
         });
 
         // OpenSeadragon initialization script
