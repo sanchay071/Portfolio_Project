@@ -21,7 +21,8 @@ main {
 
 .nav-bar {
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     position: fixed;
     width: 100%;
     top: 0;
@@ -29,6 +30,7 @@ main {
     box-sizing: border-box;
 /*    border-bottom: 1px solid lightgrey;*/
     transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+    z-index: 100;
 }
 
 .nav-bar.shadow {
@@ -129,6 +131,59 @@ main {
 	/* text-transform: capitalize */
 }
 
+.skills-section {
+    position: relative;
+    width: 100%;          /* Full width of the screen */
+    height: 150px;        /* Adjust the height to your needs */
+    margin: 0 auto;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, .1);  /* Slight white background for transparency */
+    backdrop-filter: blur(50px);  /* Glassmorphism effect */
+    /* border-radius: 10px;   */
+    overflow: hidden;     /* Prevents overflow of the carousel content */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center;     /* Center the content vertically */
+}
+
+/* Full-width container for the carousel */
+.skills-section {
+    position: relative;
+    width: 100%;          /* Full width of the screen */
+    height: 150px;        /* Adjust the height to your needs */
+    margin: 0 auto;
+    padding: 20px 0;
+    background: rgba(162, 166, 166, .1);  /* Slight white background with more opacity */
+    backdrop-filter: blur(15px);  /* Stronger blur for the glassmorphism effect */
+    border-radius: 15px;  /* Optional: Rounded corners */
+    overflow: hidden;     /* Prevents overflow of the carousel content */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center;     /* Center the content vertically */
+}
+
+/* Make sure the carousel wrapper fits inside the section */
+.skills-container {
+    display: flex;
+    gap: 10px;            /* Space between icons */
+    overflow: hidden;     /* Prevents items from overflowing outside the container */
+    padding: 0;
+    width: 100%;          /* Make it full width */
+}
+
+/* Style for each skill item (icon) */
+.skills-container .skill {
+    flex-shrink: 0;       /* Prevent shrinking of items */
+    text-align: center;   /* Center-align text if any inside the skill div */
+}
+
+/* Styling for the skill images */
+.skills-container img {
+    width: 100px;         /* Adjust the icon size */
+    height: 100px;
+    object-fit: contain;  /* Keep the aspect ratio of the icon */
+}
+
 .header{
 	color: black;
 	/* margin-top: 100px; */
@@ -202,10 +257,15 @@ main {
     top: 100px; /* Adjust based on header height */
     left: 0;
     width: 200px; 
-    padding: 10px;
-    background-color: transparent;
-    border-right: none;
-    text-transform: capitalize;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); /* Apply blur for frosty look */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 15px; /* Curved corners for the frosty effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border for emphasis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for depth */
+    z-index: 1000; /* Ensure it's above other content */
+    /* text-transform: capitalize; */
 }
 
 .sidebar ul {
@@ -214,18 +274,22 @@ main {
 }
 
 .sidebar ul li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .sidebar ul li a {
     text-decoration: none; /* Remove underline */
     color: #333; 
     display: block;
-    padding: 5px;
+    padding: 3px;
+    text-transform: capitalize;
+    border-radius: 10px; /* Rounded edges for links */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
 }
 
 .sidebar ul li a:hover {
     background-color: #f0f0f0; /* Add a subtle background on hover */
+    color: #333; /* Darker text color on hover for contrast */
 }
 
 .project-container {
