@@ -6,24 +6,52 @@ data_handler = DataHandler()
 
 @app.route('/')
 def home():
+    """Render the home page with about and skills data.
+    
+    Returns:
+    HTML template for the home page with about_data and skills_data context.
+    """
+    
     about_data = data_handler.get_about()
     skills_data = data_handler.get_skills()
     return render_template('about.html', about_data=about_data, skills_data = skills_data)
 
 @app.route('/about')
 def about():
+    """Render the about page with about and skills data.
+    
+    Returns:
+    HTML template for the about page with about_data and skills_data context.
+    """
+    
     about_data = data_handler.get_about()
     skills_data = data_handler.get_skills()
     return render_template('about.html', about_data=about_data, skills_data = skills_data)
 
 @app.route('/my_works')
 def my_works():
+    """Render the My Works page with all projects data.
+    
+    Returns:
+    HTML template for the My Works page with projects context.
+    """
+    
     projects = data_handler.get_projects()
     print(projects)  # Check what projects are being loaded
     return render_template('my_works.html', projects=projects)
 
 @app.route('/project/<int:project_id>')
 def project_detail(project_id):
+    """Render the detailed project page for a specific project.
+    
+    Parameters:
+    project_id (int): ID of the project to retrieve details for.
+    
+    Returns:
+    HTML template for the project detail page with project, section_titles, data_handler,
+    next_project_id, and prev_project_id context, or a 404 error if the project is not found.
+    """
+    
     project = data_handler.get_project(project_id)
     section_titles = data_handler.get_section_titles()
     
@@ -42,4 +70,10 @@ def project_detail(project_id):
 
 @app.route('/contact')
 def contact():
+    """Render the contact page.
+    
+    Returns:
+    HTML template for the contact page.
+    """
+
     return render_template('contact.html')

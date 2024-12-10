@@ -2,7 +2,19 @@ import pandas as pd
 import os
 
 class DataHandler:
+    """ DataHandler class for managing project, image, about, and skills data stored in CSV files.
+    """
+    
     def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv', skills_file = 'data/skills.csv'):
+        """Initialize the DataHandler with file paths for projects, images, about, and skills data.
+        
+        Parameters:
+        projects_file (str): Path to the projects CSV file.
+        images_file (str): Path to the project images CSV file.
+        about_file (str): Path to the about CSV file.
+        skills_file (str): Path to the skills CSV file.
+        """
+        
         self.projects_file = projects_file
         self.images_file = images_file
         self.about_file = about_file
@@ -14,6 +26,12 @@ class DataHandler:
         self.skills_data = self.load_skills_data()
 
     def load_projects_data(self):
+        """Load projects data from the CSV file.
+        
+        Returns:
+        pd.DataFrame: DataFrame containing projects data.
+        """
+        
         if os.path.exists(self.projects_file):
             return pd.read_csv(self.projects_file)
         else:
@@ -23,6 +41,12 @@ class DataHandler:
                                          'prototype', 'feedback', 'reflection'])
 
     def load_images_data(self):
+        """ Load images data from the CSV file.
+        
+        Returns:
+        pd.DataFrame: DataFrame containing images data.
+        """
+        
         if os.path.exists(self.images_file):
             return pd.read_csv(self.images_file)
         else:
@@ -30,6 +54,12 @@ class DataHandler:
             return pd.DataFrame(columns=['project_id', 'section', 'image_path'])
     
     def load_about_data(self):
+        """Load about data from the CSV file.
+        
+        Returns:
+        pd.DataFrame: DataFrame containing about data.
+        """
+        
         if os.path.exists(self.about_file):
             return pd.read_csv(self.about_file)
         else:
@@ -37,6 +67,12 @@ class DataHandler:
             return pd.DataFrame(columns=['title', 'description', 'image_path'])
         
     def load_skills_data(self):
+        """Load skills data from the CSV file.
+        
+        Returns:
+        pd.DataFrame: DataFrame containing skills data.
+        """
+        
         if os.path.exists(self.skills_file):
             return pd.read_csv(self.skills_file)
         else:
@@ -44,20 +80,53 @@ class DataHandler:
             return pd.DataFrame(columns=['skills', 'icon'])
 
     def save_projects_data(self):
+        """Save projects data to the CSV file.
+        """
+        
         self.projects_data.to_csv(self.projects_file, index=False)
 
     def save_images_data(self):
+        """Save images data to the CSV file.
+        """
+        
         self.images_data.to_csv(self.images_file, index=False)
         
     def save_about_data(self):
+        """Save about data to the CSV file.
+        """
+        
         self.about_data.to_csv(self.about_file, index=False)
         
     def save_skills_data(self):
+        """Save skills data to the CSV file.
+        """
+        
         self.skills_data.to_csv(self.skills_file, index=False)
 
     def add_project(self, id, title, description, image_path, background, artifacts, problem_statement,
                     data_glossary, research, elicitation, interpretation, user_story, workflow,
                     prototype, feedback, reflection):
+        """Add a new project to the projects data.
+        
+        Parameters:
+        id (int): Project ID.
+        title (str): Project title.
+        description (str): Project description.
+        image_path (str): Path to the project's image.
+        background (str): Project background text.
+        artifacts (str): Project artifacts text.
+        problem_statement (str): Project problem statement text.
+        data_glossary (str): Project data glossary text.
+        research (str): Project research text.
+        elicitation (str): Project elicitation text.
+        interpretation (str): Project interpretation text.
+        user_story (str): Project user story text.
+        workflow (str): Project workflow text.
+        prototype (str): Project prototype text.
+        feedback (str): Project feedback text.
+        reflection (str): Project reflection text.
+        """
+        
         new_project = {
             'id': id, 'title': title, 'description': description, 'image_path': image_path,
             'background': background, 'artifacts': artifacts, 'problem_statement': problem_statement,
@@ -69,25 +138,63 @@ class DataHandler:
         self.save_projects_data()
 
     def add_image(self, project_id, section, image_path):
+        """Add a new image to the images data.
+        
+        Parameters:
+        project_id (int): ID of the project to which the image belongs.
+        section (str): Section of the project the image is related to.
+        image_path (str): Path to the image.
+        """
+        
         new_image = {'project_id': project_id, 'section': section, 'image_path': image_path}
         self.images_data = self.images_data.append(new_image, ignore_index=True)
         self.save_images_data()
         
     def add_about(self, title, description, image_path):
+        """Add a new about section.
+        
+        Parameters:
+        title (str): Title of the about section.
+        description (str): Description of the about section.
+        image_path (str): Path to the about section's image.
+        """
+        
         new_section = {'title': title, 'text': description, 'image_path': image_path}
         self.about_data = self.about_data.append(new_section, ignore_index=True)
         self.save_about_data()
 
     def add_skills(self, skills, icon):
+        """Add a new skill to the skills data.
+        
+        Parameters:
+        skills (str): Skills description.
+        icon (str): Path to the skill's icon.
+        """
+        
         new_skill = {'skills': skills, 'icon': icon}
         self.skills_data = self.skills_data.append(new_skill, ignore_index=True)
         self.save_skills_data()
         
     def get_projects(self):
+        """Get all projects data.
+        
+        Returns:
+        list: List of dictionaries containing projects data.
+        """
+        
         self.projects_data = self.projects_data.fillna('')
         return self.projects_data.to_dict(orient='records')
 
     def get_project(self, project_id):
+        """Get a specific project's data by project ID.
+        
+        Parameters:
+        project_id (int): ID of the project to retrieve.
+        
+        Returns:
+        pd.Series or None: Series containing the project's data or None if not found.
+        """
+
         project = self.projects_data[self.projects_data['id'] == project_id]
         if not project.empty:
             return project.iloc[0]
@@ -95,18 +202,49 @@ class DataHandler:
             return None
     
     def get_about(self):
+        """Get about section data.
+        
+        Returns:
+        list: List of dictionaries containing about section data.
+        """
+        
         self.about_data = self.about_data.fillna('')
         return self.about_data.to_dict(orient='records')
     
     def get_images_by_project_and_section(self, project_id, section):
+        """Get images by project ID and section.
+        
+        Parameters:
+        project_id (int): ID of the project to retrieve images for.
+        section (str): Section of the project to retrieve images for.
+        
+        Returns:
+        list: List of image paths.
+        """
+        
         images = self.images_data[(self.images_data['project_id'] == project_id) & (self.images_data['section'] == section)]
         return images['image_path'].tolist() if not images.empty else []
     
     
     def get_section_titles(self):
+        """Get titles of the sections in the projects data.
+        
+        Returns:
+        list: List of section titles.
+        """
+        
         return self.projects_data.columns[4:].tolist()  # Assuming the first four columns are not section titles
     
     def get_next_project(self, current_project_id):
+        """Get the next project data by current project ID.
+        
+        Parameters:
+        current_project_id (int): ID of the current project.
+        
+        Returns:
+        dict or None: Dictionary containing the next project's data or None if not found.
+        """
+        
         projects = self.get_projects()
         current_index = next((index for (index, d) in enumerate(projects) if d["id"] == current_project_id), None)
         if current_index is not None and current_index + 1 < len(projects):
@@ -114,6 +252,15 @@ class DataHandler:
         return None
 
     def get_prev_project(self, current_project_id):
+        """Get the previous project data by current project ID.
+        
+        Parameters:
+        current_project_id (int): ID of the current project.
+        
+        Returns:
+        dict or None: Dictionary containing the previous project's data or None if not found.
+        """
+        
         projects = self.get_projects()
         current_index = next((index for (index, d) in enumerate(projects) if d["id"] == current_project_id), None)
         if current_index is not None and current_index > 0:
@@ -121,6 +268,12 @@ class DataHandler:
         return None
     
     def get_skills(self):
+        """Get all skills data.
+        
+        Returns:
+        list: List of dictionaries containing skills data.
+        """
+        
         self.skills_data = self.skills_data.fillna('')
         return self.skills_data.to_dict(orient='records')
 
