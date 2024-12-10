@@ -8,14 +8,17 @@ This guide details the mvc architecture, functions, classes used and known issue
 - [Deployment](#deployment)
 - [Interaction and Walkthrough](#interaction-and-walkthrough)
 - [Jinja Templates](#jinja-templates)
-- [Pitfalls to Avoid](#pitfalls-to-avoid)
 - [OpenSeaDragon and Slick Carousel](#openseadragon-and-slick-carousel)
+- [Pitfalls to Avoid](#pitfalls-to-avoid)
 - [Known Issues](#known-issues)
+- [Future Work and On-going Development](#future-work-and-on-going-development)
 ## Overview
 This Flask-based portfolio project serves as a dynamic platform to showcase the user's works, including research projects, user experience designs, and more. It implements an MVC (Model-View-Controller) pattern where:
 
 Model: The `DataHandler` class manages the project's data, which includes reading from and writing to CSV files (e.g., project data and images).
+
 View: HTML templates in the `templates` folder (`about.html`, `my_works.html`, `project_detail.html`, and `contact.html`) are used for rendering content on the frontend. CSS styles for the pages are located in `static/style.css`.
+
 Controller: The Flask routes in `main.py` handle user interactions and data fetching, processing the business logic and passing data to the views.
 
 The app enables users to view a portfolio of projects, including detailed descriptions and images, and allows for the navigation between different pages (home, about, works, and contact).
@@ -84,7 +87,7 @@ To ensure a smooth setup and deployment, the following steps should be taken:
     pip install -r requirements.txt
     ```
 2. CSV File Configuration:
-   - If the `projects.csv` file does not exist, the `DataHandler` will automatically generate it upon the first app run. Make sure that `data_handler.create_initial_data(` works as expected to set up the initial data correctly.
+   - If the `projects.csv` file does not exist, the `DataHandler` will automatically generate it upon the first app run. Make sure that `data_handler.create_initial_data()` works as expected to set up the initial data correctly.
 
 3. Running the Flask App:
    - To run the app, use the following command: `python run_app.py`
@@ -125,22 +128,11 @@ Each of the templates that extend `layout.html` follows a similar structure for 
    - The loop for projects uses `project['image_path']` and `project['title']`, so if any of the project data is missing or the structure is different, it can lead to broken images or incorrect display.
    - The `url_for` function is used for dynamically linking project details, so if there are issues with the Flask routes or project IDs, it could cause 404 errors.
 
-3. project_detail.html:
+3. `project_detail.html`:
    - This template is responsible for showing the full details of a single project. It includes navigation buttons (Previous and Next) to move between projects and utilizes OpenSeadragon for detailed image viewing.
    - The dynamic generation of section titles (`section_titles`) assumes that the project data contains these keys. If a project does not have all the necessary data for the sections, it may cause missing or incomplete sections to be displayed.
    - The `adjustButtonPosition` function adjusts the position of navigation buttons based on the page scroll. Ensure that the footer element is properly sized and positioned to avoid misalignment of buttons.
    - The hover-to-zoom feature (via OpenSeadragon) relies on images being loaded properly. If there are missing images or broken links, the viewer may not initialize correctly, leading to a broken user experience.
-
-## Pitfalls to Avoid
-1. Dynamic Data Handling: The templates assume that all the data passed from the backend (such as about_data, skills_data, projects, etc.) is well-formed and available. If any required data is missing or improperly structured, this can lead to broken sections or visual elements. Ensure that the backend is correctly preparing and validating data before rendering.
-JavaScript Initialization: Both OpenSeadragon and Slick Carousel rely on JavaScript for proper initialization. Any issues with JavaScript loading, such as missing libraries or incorrect order of execution, can lead to these features not functioning. Make sure that the necessary JavaScript libraries are loaded and that the initialization scripts are running after the page has fully loaded.
-Layout Issues: Dynamic class assignment for elements like images (left vs. right alignment) and the carousel needs to be thoroughly tested to ensure they are applying correctly under all conditions. Incorrect application of styles might break the layout or cause elements to overlap.
-Responsive Design: The site needs to be fully responsive across various screen sizes. Issues might arise with elements like the OpenSeadragon viewer or carousel, where large images or elements are not resizing correctly on smaller screens. Test these components on mobile devices to ensure they work smoothly.
-SEO and Accessibility: Ensure that alt text is provided for all images for better SEO and accessibility. Missing alt attributes or poor semantic HTML can affect both search engine ranking and the site's usability for screen readers.
-Final Thoughts
-This project relies heavily on dynamic content rendering and interactive elements like image zooming and carousel sliders. When implementing such features, special attention should be given to data validation, correct library initialization, and responsive design. Testing is essential, especially for features like OpenSeadragon and Slick Carousel, which require specific setup to function smoothly across different browsers and devices. Be cautious with JavaScript execution order and data handling in Flask routes to avoid rendering issues.
-
-To enhance this project further, consider adding more robust error handling, logging for debugging purposes, and extending the interactive elements to include more user customization features (e.g., toggling image zoom on and off).
 
 ### OpenSeaDragon and Slick Carousel
 In this project, OpenSeadragon and Slick Carousel are utilized for interactive image display and smooth navigation through project visuals.
@@ -159,6 +151,12 @@ Implementation: In the `about.html` template, the `skills-container` uses Slick 
 
 Pitfalls: Ensure the Slick Carousel is correctly initialized, and the necessary JavaScript libraries are included in the project. One common issue might be a lack of correct initialization or styling, leading to layout issues. Verify that the `slick-carousel` initialization code is running after the page loads and that the required CSS for the carousel is included.
 
+## Pitfalls to Avoid
+1. Dynamic Data Handling: The templates assume that all the data passed from the backend (such as `about_data`, `skills_data`, `projects`, etc.) is well-formed and available. If any required data is missing or improperly structured, this can lead to broken sections or visual elements. Ensure that the backend is correctly preparing and validating data before rendering.
+2. JavaScript Initialization: Both OpenSeadragon and Slick Carousel rely on JavaScript for proper initialization. Any issues with JavaScript loading, such as missing libraries or incorrect order of execution, can lead to these features not functioning. Make sure that the necessary JavaScript libraries are loaded and that the initialization scripts are running after the page has fully loaded.
+3. Layout Issues: Dynamic class assignment for elements like images (left vs. right alignment) and the carousel needs to be thoroughly tested to ensure they are applying correctly under all conditions. Incorrect application of styles might break the layout or cause elements to overlap.
+4. Responsive Design: The site needs to be fully responsive across various screen sizes. Issues might arise with elements like the OpenSeadragon viewer or carousel, where large images or elements are not resizing correctly on smaller screens. Test these components on mobile devices to ensure they work smoothly.
+
 ## Known Issues
 ### Minor Issues
 1. CSV File Parsing:
@@ -171,6 +169,21 @@ Pitfalls: Ensure the Slick Carousel is correctly initialized, and the necessary 
    - Using CSV files for storing project data is not scalable for larger datasets. In a real-world deployment, a database solution (e.g., SQLite, PostgreSQL) would be more efficient for handling large volumes of data.
 2. No Form Handling on Contact Page:
    - The contact page currently does not include a form for users to send inquiries. Adding a form (e.g., using Flask-WTF for form handling) would be beneficial.
+
+### Future Work and On-going Development
+#### Future Work
+1. Adding a Contact Form:
+   - Implement a form for users to send emails directly from the website. This could be achieved by integrating a service like Flask-Mail for email handling.
+2. Database Integration:
+   - Replace the CSV data storage with a relational database (e.g., SQLite or PostgreSQL) to improve scalability and allow for more complex queries.
+3. Image Carousel on Project Detail Page:
+   - Implement an image carousel for projects that have multiple images to improve the user experience.
+4. User Authentication:
+   - Add user authentication (using Flask-Login) to allow users to log in and manage their portfolio.
+
+#### Ongoing Deployment/Development
+1. Unit Testing:
+   - I'm implementing unit tests to validate the functionality of the DataHandler class and Flask routes. Tools like pytest will be used to test individual components.
 
 
 
