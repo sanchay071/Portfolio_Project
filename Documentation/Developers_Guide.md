@@ -170,8 +170,8 @@ Pitfalls: Ensure the Slick Carousel is correctly initialized, and the necessary 
 2. No Form Handling on Contact Page:
    - The contact page currently does not include a form for users to send inquiries. Adding a form (e.g., using Flask-WTF for form handling) would be beneficial.
 
-### Future Work and On-going Development
-#### Future Work
+## Future Work and On-going Development
+### Future Work
 1. Adding a Contact Form:
    - Implement a form for users to send emails directly from the website. This could be achieved by integrating a service like Flask-Mail for email handling.
 2. Database Integration:
@@ -181,7 +181,7 @@ Pitfalls: Ensure the Slick Carousel is correctly initialized, and the necessary 
 4. User Authentication:
    - Add user authentication (using Flask-Login) to allow users to log in and manage their portfolio.
 
-#### Ongoing Deployment/Development
+### Ongoing Deployment/Development
 1. Unit Testing:
    - I'm implementing unit tests to validate the functionality of the DataHandler class and Flask routes. Tools like pytest will be used to test individual components.
 
