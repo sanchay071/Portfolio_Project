@@ -281,7 +281,7 @@ main {
     text-decoration: none; /* Remove underline */
     color: #333; 
     display: block;
-    padding: 3px;
+    padding: 1px;
     text-transform: capitalize;
     border-radius: 10px; /* Rounded edges for links */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover effects */
@@ -486,6 +486,7 @@ footer .socials a:hover {
     list-style-type: none; /* Remove default list styling */
     padding: 0; /* Remove default padding */
     display: inline-block;
+    margin-top: 200px;
 }
 
 .contact-list li {

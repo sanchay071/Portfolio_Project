@@ -13,7 +13,6 @@
 
             {# Check if the section has an image and display it with alternating float classes #}
             {% if section['image_path'] %}
-            {% if section['image_path'] %}
                 <img src="{{ url_for('static', filename=section['image_path']) }}" alt="About Image" class="{{ 'left' if loop.index is odd else 'right' }}">
             {% endif %}
 
