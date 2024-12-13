@@ -9,7 +9,6 @@ This guide details the mvc architecture, functions, classes used and known issue
 - [Interaction and Walkthrough](#interaction-and-walkthrough)
 - [Jinja Templates](#jinja-templates)
 - [OpenSeaDragon and Slick Carousel](#openseadragon-and-slick-carousel)
-- [Deployment](#deployment)
 - [Pitfalls to Avoid](#pitfalls-to-avoid)
 - [Known Issues](#known-issues)
 - [Future Work and On-going Development](#future-work-and-on-going-development)
@@ -97,6 +96,29 @@ To ensure a smooth setup and deployment, the following steps should be taken:
 4. Deployment:
    - For production deployment, consider using a WSGI server like ***Gunicorn*** and setting up a reverse proxy (e.g., Nginx).
    - Ensure that any environment-specific configurations (e.g., database paths, server ports) are properly managed through environment variables or a config file.
+
+### PythonAnyWhere
+
+1. Sign Up / Log In: Go to [pythonanywhere](https://www.pythonanywhere.com/) and create an account or log in.
+2. Create a New Web App:
+   1. Go to the "Web" tab and click "Add a new web app".
+   2. Choose "Manual configuration" and select "Flask" for the framework.
+3. Open a Bash console and clone your repository `git clone https://github.com/yourusername/yourrepository.git`
+4. Configure WSGI: Edit the WSGI configuration file (`/var/www/your_username_pythonanywhere_com_wsgi.py`) to point to your Flask app
+   ```
+   import sys
+   import os
+   project_home = '/home/your_username/path_to_your_project'
+   if project_home not in sys.path:
+   sys.path.append(project_home)
+   # Import your Flask app
+   from run_app import app as application
+   ```
+5. Open a console in PythonAnyWhere and Install required packages - `pip install -r /home/your_username/path_to_your_project/requirements.txt`
+6. In the `data_handler` class, the file path should reference the path relative to PythonAnyWhere. ![image](https://github.com/user-attachments/assets/0c25df20-e37f-4dc2-ab79-34e3bf403b8b)
+
+7. To pull the latest code from GitHub, use `git pull origin main`
+8. Save the code changes, and click reload to launch your website ![image](https://github.com/user-attachments/assets/43be26cd-6628-4285-82a1-df1c666741d6)
      
 ## Interaction and Walkthrough
 1. Homepage (`/`): The user sees a basic introduction (about the user) and navigates through the site using the links in the header.
@@ -151,28 +173,6 @@ Slick Carousel is used for creating a scrollable and interactive set of images o
 Implementation: In the `about.html` template, the `skills-container` uses Slick Carousel to display various skill icons. The carousel is initialized by the carousel class, which the user can navigate by swiping or clicking on arrows.
 
 Pitfalls: Ensure the Slick Carousel is correctly initialized, and the necessary JavaScript libraries are included in the project. One common issue might be a lack of correct initialization or styling, leading to layout issues. Verify that the `slick-carousel` initialization code is running after the page loads and that the required CSS for the carousel is included.
-
-## Deployment
-1. Sign Up / Log In: Go to [pythonanywhere](https://www.pythonanywhere.com/) and create an account or log in.
-2. Create a New Web App:
-   1. Go to the "Web" tab and click "Add a new web app".
-   2. Choose "Manual configuration" and select "Flask" for the framework.
-3. Open a Bash console and clone your repository `git clone https://github.com/yourusername/yourrepository.git`
-4. Configure WSGI: Edit the WSGI configuration file (`/var/www/your_username_pythonanywhere_com_wsgi.py`) to point to your Flask app
-   ```
-   import sys
-   import os
-   project_home = '/home/your_username/path_to_your_project'
-   if project_home not in sys.path:
-   sys.path.append(project_home)
-   # Import your Flask app
-   from run_app import app as application
-   ```
-5. Open a console in PythonAnyWhere and Install required packages - `pip install -r /home/your_username/path_to_your_project/requirements.txt`
-6. In the `data_handler` class, the file path should reference the path relative to PythonAnyWhere. ![image](https://github.com/user-attachments/assets/0c25df20-e37f-4dc2-ab79-34e3bf403b8b)
-
-7. To pull the latest code from GitHub, use `git pull origin main`
-8. Save the code changes, and click reload to launch your website ![image](https://github.com/user-attachments/assets/43be26cd-6628-4285-82a1-df1c666741d6)
 
 ## Pitfalls to Avoid
 1. Dynamic Data Handling: The templates assume that all the data passed from the backend (such as `about_data`, `skills_data`, `projects`, etc.) is well-formed and available. If any required data is missing or improperly structured, this can lead to broken sections or visual elements. Ensure that the backend is correctly preparing and validating data before rendering.
