@@ -96,6 +96,29 @@ To ensure a smooth setup and deployment, the following steps should be taken:
 4. Deployment:
    - For production deployment, consider using a WSGI server like ***Gunicorn*** and setting up a reverse proxy (e.g., Nginx).
    - Ensure that any environment-specific configurations (e.g., database paths, server ports) are properly managed through environment variables or a config file.
+
+### PythonAnyWhere
+
+1. Sign Up / Log In: Go to [pythonanywhere](https://www.pythonanywhere.com/) and create an account or log in.
+2. Create a New Web App:
+   1. Go to the "Web" tab and click "Add a new web app".
+   2. Choose "Manual configuration" and select "Flask" for the framework.
+3. Open a Bash console and clone your repository `git clone https://github.com/yourusername/yourrepository.git`
+4. Configure WSGI: Edit the WSGI configuration file (`/var/www/your_username_pythonanywhere_com_wsgi.py`) to point to your Flask app
+   ```
+   import sys
+   import os
+   project_home = '/home/your_username/path_to_your_project'
+   if project_home not in sys.path:
+   sys.path.append(project_home)
+   # Import your Flask app
+   from run_app import app as application
+   ```
+5. Open a console in PythonAnyWhere and Install required packages - `pip install -r /home/your_username/path_to_your_project/requirements.txt`
+6. In the `data_handler` class, the file path should reference the path relative to PythonAnyWhere. ![image](https://github.com/user-attachments/assets/0c25df20-e37f-4dc2-ab79-34e3bf403b8b)
+
+7. To pull the latest code from GitHub, use `git pull origin main`
+8. Save the code changes, and click reload to launch your website ![image](https://github.com/user-attachments/assets/43be26cd-6628-4285-82a1-df1c666741d6)
      
 ## Interaction and Walkthrough
 1. Homepage (`/`): The user sees a basic introduction (about the user) and navigates through the site using the links in the header.
