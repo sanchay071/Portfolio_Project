@@ -1,31 +1,39 @@
-    {% extends "layout.html" %}
-    {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 
-    {# Wrapper for the main content of the page #}
-    <div class = "content-wrapper">
-        <div class = "header-text">
-            <h3>About My Projects</h3>
-            <p>The works listed below pertain to my course projects at Iowa State University as well as personal projects. During my time at Revature, I was responsible for requirements engineering, agile product development, and stakeholder management. In 2023, I collaborated with a cross-functional team of developers, UX designers, and product managers to create a headless Learning Management System (LMS) called Exa, designed to support an asynchronous training process.</p>
-            <p>As a business analyst, my responsibilities included user research, requirements elicitation, and business analysis. I also facilitated the design and development of learning management and content management systems, serving as the product owner for an in-house student assessment tool. My key functions included product <strong>backlog management</strong>, <strong>creating user stories</strong>, <strong>sprint planning</strong>, <strong>API testing</strong>, <strong>user acceptance testing</strong>, <strong>requirements analysis and design</strong>, and <strong>prototyping</strong>. I will work on adding some of my work projects, as some of them are confidential.</p>
-            <p>If you would like more details about my work at Revature or references from colleagues, please feel free to reach out! </p>
-        </div>
-        <h3 class="header">my works</h3>
-        <div class="card-container">
-
-            {# Loop through the projects and display each project in a card #}
-            {% for project in projects %}
-            <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
-                <div class="card">
-                    <img src="{{ url_for('static', filename=project['image_path']) }}" alt="{{ project['title'] }}">
-                    <div class="title-container">
-
-                        {# Container for project title and subtitle #}
-                        <h4>{{ project['title'] }}</h4>
-                        <p>{{ project['subtitle'] }}</p>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
+{# Wrapper for the main content of the page #}
+<div class = "content-wrapper">
+    <div class = "header-text">
+        <h3>About My Projects</h3>
+        <p>The works listed below pertain to my course projects at Iowa State University as well as personal projects. During my time at Revature, I was responsible for requirements engineering, agile product development, and stakeholder management. In 2023, I collaborated with a cross-functional team of developers, UX designers, and product managers to create a headless Learning Management System (LMS) called Exa, designed to support an asynchronous training process.</p>
+        <p>If you would like more details about my work at Revature or references from colleagues, please feel free to reach out! </p>
     </div>
-    {% endblock %}
+    <h3 class="header">my works</h3>
+    <div class="card-container">
+
+        {# Loop through the projects and display each project in a card #}
+        {% for project in projects %}
+        <a href="{{ url_for('project_detail', project_id=project['id']) }}" class="card-link">
+            <div class="card">
+                <img src="{{ url_for('static', filename=project['image_path']) }}" alt="{{ project['title'] }}">
+                <div class="title-container">
+
+                    {# Container for project title and subtitle #}
+                    <h4>{{ project['title'] }}</h4>
+                    <p>{{ project['subtitle'] }}</p>
+
+                    {# Tags as responsive pills below title #}
+                    {% if project['tags'] %}
+                    <div class="tag-container">
+                        {% for tag in project['tags'] %}
+                            <span class="tag" style="background-color: {{ tag['color'] }};">{{ tag['tag'] }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

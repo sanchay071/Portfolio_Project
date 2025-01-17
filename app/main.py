@@ -37,7 +37,12 @@ def my_works():
     """
     
     projects = data_handler.get_projects()
-    print(projects)  # Check what projects are being loaded
+
+
+    for project in projects:
+        detailed_project = data_handler.get_project(project['id'])
+        if detailed_project:
+            project['tags'] = detailed_project.get('tags', [])  # Attach tags to the project
     return render_template('my_works.html', projects=projects)
 
 @app.route('/project/<int:project_id>')

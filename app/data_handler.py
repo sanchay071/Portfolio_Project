@@ -5,7 +5,7 @@ class DataHandler:
     """ DataHandler class for managing project, image, about, and skills data stored in CSV files.
     """
     
-    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv', skills_file = 'data/skills.csv'):
+    def __init__(self, projects_file='data/projects.csv', images_file='data/project_images.csv', about_file='data/about.csv', skills_file = 'data/skills.csv', tag_file = 'data/tags.csv'):
         """Initialize the DataHandler with file paths for projects, images, about, and skills data.
         
         Parameters:
@@ -19,11 +19,13 @@ class DataHandler:
         self.images_file = images_file
         self.about_file = about_file
         self.skills_file = skills_file
+        self.tag_file = tag_file
         self.create_initial_data()
         self.projects_data = self.load_projects_data()  # Ensure this is called after create_initial_data
         self.images_data = self.load_images_data()
         self.about_data = self.load_about_data()
         self.skills_data = self.load_skills_data()
+        self.tag_data = self.load_tag_data()
 
     def load_projects_data(self):
         """Load projects data from the CSV file.
@@ -78,6 +80,14 @@ class DataHandler:
         else:
             # Initialize with empty DataFrame if the file doesn't exist
             return pd.DataFrame(columns=['skills', 'icon'])
+        
+    def load_tag_data(self):
+        if os.path.exists(self.tag_file):
+            return pd.read_csv(self.tag_file)
+        else:
+            # Initialize with empty DataFrame if the file doesn't exist
+            return pd.DataFrame(columns=['project_id', 'tag', 'color'])
+        
 
     def save_projects_data(self):
         """Save projects data to the CSV file.
@@ -102,6 +112,12 @@ class DataHandler:
         """
         
         self.skills_data.to_csv(self.skills_file, index=False)
+        
+    def save_tag_data(self):
+        """Save skills data to the CSV file.
+        """
+        
+        self.tag_data.to_csv(self.tag_file, index=False)
 
     def add_project(self, id, title, description, image_path, background, artifacts, problem_statement,
                     data_glossary, research, elicitation, interpretation, user_story, workflow,
@@ -175,6 +191,11 @@ class DataHandler:
         self.skills_data = self.skills_data.append(new_skill, ignore_index=True)
         self.save_skills_data()
         
+    def add_tag(self, project_id, tag, color):
+        new_tag = {'project_id': project_id, 'tag': tag, 'color': color}
+        self.tag_data = self.tag_data.append(new_tag, ignore_index = True)
+        self.save_tag_data()
+        
     def get_projects(self):
         """Get all projects data.
         
@@ -196,8 +217,18 @@ class DataHandler:
         """
 
         project = self.projects_data[self.projects_data['id'] == project_id]
+    
         if not project.empty:
-            return project.iloc[0]
+            project_data = project.iloc[0].to_dict()
+
+            # Fetch and format related tags
+            project_tags = self.tag_data[self.tag_data['project_id'] == project_id]
+            tags = project_tags[['tag', 'color']].to_dict(orient='records')
+
+            # Attach tags to the project data
+            project_data['tags'] = tags
+            
+            return project_data   
         else:
             return None
     
@@ -276,6 +307,10 @@ class DataHandler:
         
         self.skills_data = self.skills_data.fillna('')
         return self.skills_data.to_dict(orient='records')
+    
+    def get_tag(self):
+        self.tag_data = self.tag_data.fillna('')
+        return self.tag_data.to_dict(orient='records')
 
     def create_initial_data(self):
         # Check if the data file exists and create it with sample data if it doesn't
@@ -413,3 +448,12 @@ class DataHandler:
             }
             df_skills = pd.DataFrame(skills_data)
             df_skills.to_csv(self.skills_file, index=False)
+            
+        if not os.path.exists(self.tag_file):
+            tag_data = {
+                'project_id': ['1'],
+                'tag': ['UX'],
+                'color': ['#3776AB']
+            }
+            df_tag = pd.DataFrame(tag_data)
+            df_tag.to_csv(self.tag_file, index=False)
